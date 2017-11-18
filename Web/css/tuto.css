@@ -1,0 +1,19 @@
+body {
+  padding-top: 10px;
+}
+[class*="col-"], footer {
+  background-color: lightblue;
+  border: 2px solid black;
+  box-shadow: 3px 3px 2px black;
+  border-radius: 6px;
+  line-height: 80px;
+  text-align: center;
+}
+
+.col-md-8 {
+	line-height: 200px;
+}
+
+.col-md-12 {	
+line-height: 80px;
+}

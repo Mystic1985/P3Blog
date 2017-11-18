@@ -1,0 +1,72 @@
+body { 
+  padding-top: 10px;
+}
+
+header {
+  margin-bottom: 15px;
+}
+
+.navbar-custom {
+  background-color:#D3D3D3;
+  color:#ffffff;
+  border-radius:5px;
+  margin-bottom: 15px;
+}
+
+.title {
+  font-family: Snell Roundhand;
+}
+
+.subtitle {
+  font-family: Snell Roundhand;
+}
+
+.ajouterbillet {
+  font-family: Snell Roundhand;
+}
+
+.form-control {
+  width: 40%;
+}
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+[class*="col-"], footer {
+  line-height: 50px;
+  text-align: center;
+}
+
+h4 {
+  margin-bottom: 20px;
+}
+.col-md-8 {
+  line-height: 200px;
+}
+
+.col-md-12 {  
+line-height: 80px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+
