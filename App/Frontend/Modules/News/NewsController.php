@@ -95,6 +95,8 @@ class NewsController extends BackController
     $manager = $this->managers->getManagerOf('Comments');
     $manager->signalComment($commentid);
 
+    $this->app->user()->setFlash('Le commentaire a bien été signalé !');
+
     $this->app->httpResponse()->redirect('.');
   }
 }
