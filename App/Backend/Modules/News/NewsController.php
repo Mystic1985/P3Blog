@@ -17,7 +17,6 @@ class NewsController extends BackController
     //Récupération du numéro de page sous la forme d'une variable
     $page = $request->getData('page');
     $nombreNews = $this->app->config()->get('nombre_news'); //nombre_news = 5
-
     //Si on a numéro de page, alors on calcule le numéro du premier billet à afficher sous forme de variable
     if(isset($page)) 
     {
@@ -46,6 +45,7 @@ class NewsController extends BackController
  
     $manager = $this->managers->getManagerOf('News');
 
+    $lastPage = ceil($manager->count() / $nombreNews);
     $listeNews = $manager->getList($min, $nombreNews);
     
     //Transmission des variables à la vue
@@ -54,6 +54,7 @@ class NewsController extends BackController
     $this->page->addVar('pageSuivante', $pagesuivante);
     $this->page->addVar('listeNews', $listeNews);
     $this->page->addVar('nombreNews', $manager->count());
+    $this->page->addVar('lastPage', $lastPage);
   }
 
  
