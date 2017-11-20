@@ -44,9 +44,20 @@ class NewsController extends BackController
     $this->page->addVar('title', 'Gestion des billets');
  
     $manager = $this->managers->getManagerOf('News');
-
+    //Création d'une variable pour afficher la dernière page de la liste des billets
     $lastPage = ceil($manager->count() / $nombreNews);
     $listeNews = $manager->getList($min, $nombreNews);
+
+    //Si le numéro de la page actuel est égal au numéro de la dernière page :
+    if($page == $lastPage)
+    {
+      $pagesuivante = $lastPage;
+    }
+
+    else
+    {
+      $pagesuivante = $page + 1;
+    }
     
     //Transmission des variables à la vue
     $this->page->addVar('page', $page);
