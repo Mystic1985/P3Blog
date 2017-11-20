@@ -14,17 +14,48 @@ class NewsController extends BackController
     public function executeIndex(HTTPRequest $request)
   {
 
-    $nombreNews = $this->app->config()->get('nombre_news');
+    //Récupération du numéro de page sous la forme d'une variable
+    $page = $request->getData('page');
+    $nombreNews = $this->app->config()->get('nombre_news'); //nombre_news = 5
+
+    //Si on a numéro de page, alors on calcule le numéro du premier billet à afficher sous forme de variable
+    if(isset($page)) 
+    {
+      $min = $page * $nombreNews - $nombreNews;
+    }
+    //Sinon, la première page sera affichée par défaut
+    else
+    {
+      $min = 0;
+      $page = 1;
+    }
+    // Création d'une variable pour accéder à la page précédente
+    if($page > 1)
+    {
+      $pageprecedente = $page - 1;
+    }
+
+    else
+    {
+      $pageprecedente = 1;
+    }
+    //Création d'une variable pour accéder à la page suivante
+    $pagesuivante = $page + 1;
 
     $this->page->addVar('title', 'Gestion des billets');
  
     $manager = $this->managers->getManagerOf('News');
 
-    $listeNews = $manager->getList(0, $nombreNews);
+    $listeNews = $manager->getList($min, $nombreNews);
     
+    //Transmission des variables à la vue
+    $this->page->addVar('page', $page);
+    $this->page->addVar('pagePrecedente', $pageprecedente);
+    $this->page->addVar('pageSuivante', $pagesuivante);
     $this->page->addVar('listeNews', $listeNews);
     $this->page->addVar('nombreNews', $manager->count());
   }
+
  
   public function executeDelete(HTTPRequest $request)
   {
@@ -33,7 +64,7 @@ class NewsController extends BackController
     $this->managers->getManagerOf('News')->delete($newsId);
     $this->managers->getManagerOf('Comments')->deleteFromNews($newsId);
  
-    $this->app->user()->setFlash('Le billet a bien été supprimée !');
+    $this->app->user()->setFlash('Le billet a bien été supprimé !');
  
     $this->app->httpResponse()->redirect('.');
   }
