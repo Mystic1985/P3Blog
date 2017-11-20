@@ -14,3 +14,4 @@
 		</table>
 	</section>
 </div>
+	<a class="btn btn-default btn-sm" href="/admin/news-<?php echo $pagePrecedente ?>.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>  <?php echo $page ?>  <a class="btn btn-default btn-sm" href="/admin/news-<?php echo $pageSuivante ?>.html"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>
