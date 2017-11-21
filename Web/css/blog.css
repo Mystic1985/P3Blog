@@ -13,16 +13,14 @@ header {
   margin-bottom: 15px;
 }
 
-.title {
-  font-family: Snell Roundhand;
+h2, .title, .subtitle, .ajouterbillet {
+  font-family : Snell Roundhand;
 }
 
-.subtitle {
-  font-family: Snell Roundhand;
-}
-
-.ajouterbillet {
-  font-family: Snell Roundhand;
+.contenubillet {
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: justify;
 }
 
 .form-control {
