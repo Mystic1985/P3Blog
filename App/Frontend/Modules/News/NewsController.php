@@ -11,18 +11,51 @@ class NewsController extends BackController
 {
   public function executeIndex(HTTPRequest $request)
   {
+    $page = $request->getData('page');
     // On récupère le nombre de billets à afficher (5) et le nombre de caractères (200)
     $nombreNews = $this->app->config()->get('nombre_news'); 
     $nombreCaracteres = $this->app->config()->get('nombre_caracteres');
- 
+    
+    if(isset($page)) 
+    {
+      $min = $page * $nombreNews - $nombreNews;
+    }
+    //Sinon, la première page sera affichée par défaut
+    else
+    {
+      $min = 0;
+      $page = 1;
+    }
+    // Création d'une variable pour accéder à la page précédente
+    if($page > 1)
+    {
+      $pageprecedente = $page - 1;
+    }
+
+    else
+    {
+      $pageprecedente = 1;
+    }
+
+    $pagesuivante = $page + 1;
     // On ajoute une définition pour le titre.
     $this->page->addVar('title', 'Liste des '.$nombreNews.' derniers billets');
  
     // On récupère le manager des billets.
     $manager = $this->managers->getManagerOf('News');
-    
+    $lastPage = ceil($manager->count() / $nombreNews); // Variable affichant la dernière page
+
+    if($page == $lastPage)
+    {
+      $pagesuivante = $lastPage;
+    }
+
+    else
+    {
+      $pagesuivante = $page + 1;
+    }
     // On récupère la liste des billets à afficher ($nombreNews = 5)
-    $listeNews = $manager->getList(0, $nombreNews); 
+    $listeNews = $manager->getList($min, $nombreNews); 
  
     // On parcourt la liste des billets pour récupérer le nombre de caractères de chaque billet
     foreach ($listeNews as $news)
@@ -36,8 +69,12 @@ class NewsController extends BackController
       }
     }
  
-    // On ajoute la variable $listeNews à la vue.
+    $this->page->addVar('page', $page);
+    $this->page->addVar('pagePrecedente', $pageprecedente);
+    $this->page->addVar('pageSuivante', $pagesuivante);
     $this->page->addVar('listeNews', $listeNews);
+    $this->page->addVar('nombreNews', $manager->count());
+    $this->page->addVar('lastPage', $lastPage);
   }
  
   public function executeShow(HTTPRequest $request)
