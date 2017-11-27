@@ -12,4 +12,5 @@
   <route url="/admin/users-delete-([0-9]+)\.html" module="Users" action="deleteUser" vars="id" />
   <route url="/admin/users-add\.html" module="Users" action="addUser" />
   <route url="/admin/news-([0-9]+).html" module="News" action="index" vars="page" />
+  <route url="/admin/logout.html" module="Connexion" action="logout" />
 </routes>

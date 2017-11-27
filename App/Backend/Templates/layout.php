@@ -41,6 +41,7 @@
             <li> <a href="/admin/news-insert.html">Rédiger un billet</a> </li>
             <li> <a href="/admin/comments-signales.html">Modérer les commentaires</a></li>
             <li> <a href="/admin/users-list.html">Utilisateurs</a> </li>
+            <li> <a href="/admin/logout.html">Se déconnecter</a> </li>
            <?php } ?>
           </ul>
         </div>
