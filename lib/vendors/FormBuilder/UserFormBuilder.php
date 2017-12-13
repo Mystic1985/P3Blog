@@ -4,6 +4,7 @@ namespace FormBuilder;
 use \OCFram\FormBuilder;
 use \OCFram\StringField;
 use \OCFram\TextField;
+use \OCFram\PasswordField;
 use \OCFram\MaxLengthValidator;
 use \OCFram\NotNullValidator;
  
@@ -20,9 +21,10 @@ class UserFormBuilder extends FormBuilder
           new NotNullValidator('Merci de spécifier un nom d\'utilisateur'),
         ],
        ]))
-       ->add(new StringField([
+       ->add(new PasswordField([
         'label' => 'Mot de passe',
         'name' => 'password',
+        
         'validators' => [
           new NotNullValidator('Merci de rentrer un mot de passe'),
         ],
